@@ -9,7 +9,7 @@ class Autor(models.Model):
     nombres = models.CharField('Nombres', max_length=100, blank=False, null=False)
     descripcion = models.TextField('Descripción', blank=True, null=True)
     adicionado = models.DateField('Adicionado', auto_now_add=True)
-    modificado = models.DateField('Eliminado', auto_now=True)
+    modificado = models.DateField('Modificado', auto_now=True)
     eliminado = models.BooleanField('Eliminado', default=False)
 
     class Meta:
