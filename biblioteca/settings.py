@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.libro',
+    'apps.autor',
     'apps.usuario',
 ]
 
@@ -119,7 +120,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+
 STATIC_URL = '/static/'
+
+# Url para iniciar sesion
+LOGIN_URL = '/usuario/login'
 
 # Archivos estaticos
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),

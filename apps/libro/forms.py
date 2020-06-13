@@ -1,39 +1,38 @@
 from django import forms
-from .models import Autor
+from .models import Libro
 
-
-class AutorForm(forms.ModelForm):
+class LibroForm(forms.ModelForm):
     class Meta:
-        model = Autor
-        fields = [
-            'apellidos',
-            'nombres',
-            'descripcion',
-        ]
-        labels = {
-            'apellidos': 'Apellidos del Autor',
-            'nombres': 'Nombres del Autor',
-            'descripcion': 'Descripción'
+        model=Libro
+        fields=(
+            'titulo',
+            'autor_id',
+            'fecha_publicacion',
+        )
+        labels={
+            'titulo' : 'Título',
+            'autor_id':'Autor(es)',
+            'fecha_publicacion':'Fecha de publicación',
         }
         widgets = {
-            'apellidos': forms.TextInput(
+            'titulo': forms.TextInput(
                 attrs={
-                    'id': 'nombres',
+                    'id': 'titulo',
                     'class': 'form-control',
-                    'placeholder': 'Ingrese los nombres del autor'
+                    'placeholder': 'Ingrese el título del libro'
                 }
             ),
-            'nombres': forms.TextInput(
+            'autor_id': forms.SelectMultiple(
                 attrs={
-                    'id': 'apellidos',
+                    'id': 'autor',
                     'class': 'form-control',
-                    'placeholder': 'Ingrese los apellidos del autor'
+                    # 'placeholder': 'Ingrese el/los autor(es) del libro'
                 }
             ),
-            'descripcion': forms.Textarea(
+            'fecha_publicacion': forms.SelectDateWidget(
                 attrs={
-                    'id': 'descripcion',
-                    'class': 'form-control',
-                    'placeholder': 'Ingrese una descripción para el autor'}
+                    'id': 'fecha_publicacion',
+                    # 'class': 'form-control col-md-2',
+                    'placeholder': 'Ingrese la fecha de publicación del libro'}
             )
         }

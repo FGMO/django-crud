@@ -4,8 +4,8 @@
 <form method="POST">
   {% csrf_token %}
   <h2>¿Desea elminar el registro {{ object.nombres }}?</h2>
-    <button type = "submit" class="btn btn-danger">Eliminar</button>
-    <a href="{% url 'libro:listar_autor' %}">Cancelar</a>
+  <button type="submit" class="btn btn-danger">Eliminar</button>
+  <a class="btn btn-warning" href="{% url 'autor:listar' %}">Cancelar</a>
 </form>
 
 {% endblock body %}

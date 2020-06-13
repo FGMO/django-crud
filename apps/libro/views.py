@@ -1,42 +1,34 @@
 from django.shortcuts import redirect
-from django.views.generic import View, TemplateView, CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .forms import AutorForm
-from .models import Autor
+from .forms import LibroForm
+from .models import Libro
 
 # Create your views here.
+class CrearLibro(CreateView):
+    model = Libro
+    template_name = 'libro/crear.html'
+    form_class = LibroForm
+    success_url = reverse_lazy('libro:listar')
+
+class ListarLibro(ListView):
+    template_name = 'libro/listar.html'
+    context_object_name = 'libros'
+    queryset = Libro.objects.filter(eliminado=False)
+
+class ActualizarLibro(UpdateView):
+    model = Libro
+    template_name = 'libro/crear.html'
+    form_class = LibroForm
+    success_url = reverse_lazy('libro:listar')
 
 
-class Inicio(TemplateView):
-    template_name = 'index.html'
-
-
-class CrearAutor(CreateView):
-    model = Autor
-    template_name = 'libro/crear_autor.html'
-    form_class = AutorForm
-    success_url = reverse_lazy('libro:listar_autor')
-
-
-class ListarAutor(ListView):
-    template_name = 'libro/listar_autor.html'
-    context_object_name = 'autores'
-    queryset = Autor.objects.filter(eliminado=False)
-
-
-class ActualizarAutor(UpdateView):
-    model = Autor
-    template_name = 'libro/crear_autor.html'
-    form_class = AutorForm
-    success_url = reverse_lazy('libro:listar_autor')
-
-
-class EliminarAutor(DeleteView):
-    model = Autor
-    template_name = 'libro/eliminar_autor.html'
+class EliminarLibro(DeleteView):
+    model = Libro
+    template_name = 'libro/eliminar.html'
 
     def post(self, request, pk, *args, **kwargs):
-        object = Autor.objects.get(id=pk)
+        object = Libro.objects.get(id=pk)
         object.eliminado = True
         object.save()
-        return redirect('libro:listar_autor')
+        return redirect('libro:listar')

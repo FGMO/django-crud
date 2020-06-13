@@ -8,25 +8,24 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('autor', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Libro',
+            name='Autor',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('titulo', models.CharField(max_length=100)),
-                ('fecha_publicacion', models.DateField()),
+                ('apellidos', models.CharField(max_length=200, verbose_name='Apellidos')),
+                ('nombres', models.CharField(max_length=100, verbose_name='Nombres')),
+                ('descripcion', models.TextField(blank=True, null=True, verbose_name='Descripción')),
                 ('adicionado', models.DateField(auto_now_add=True, verbose_name='Adicionado')),
                 ('modificado', models.DateField(auto_now=True, verbose_name='Modificado')),
                 ('eliminado', models.BooleanField(default=False, verbose_name='Eliminado')),
-                ('autor_id', models.ManyToManyField(to='autor.Autor')),
             ],
             options={
-                'verbose_name': 'Libro',
-                'verbose_name_plural': 'Libros',
-                'ordering': ['titulo'],
+                'verbose_name': 'Autor',
+                'verbose_name_plural': 'Autores',
+                'ordering': ['id'],
             },
         ),
     ]

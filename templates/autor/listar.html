@@ -28,8 +28,8 @@
                         <td>{{ autor.apellidos }}</td>
                         <td>{{ autor.descripcion }}</td>
                         <td>
-                          <a href="{% url 'libro:editar_autor' autor.id %}" class="btn btn-primary">Editar</a>
-                          <a href="{% url 'libro:eliminar_autor' autor.id %}" class="btn btn-danger">Eliminar</a>
+                          <a href="{% url 'autor:editar' autor.id %}" class="btn btn-primary">Editar</a>
+                          <a href="{% url 'autor:eliminar' autor.id %}" class="btn btn-danger">Eliminar</a>
                         </td>
                       </tr>
                     {% endfor %}

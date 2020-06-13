@@ -1,10 +1,10 @@
-{% load staticfiles %}
+{% load static %}
 <!Doctype html>
 <html class="no-js" lang="es">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block title %}Document{% endblock title %}</title>
+    <title>{% block title %}Django{% endblock title %}</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,15 +31,15 @@
                     <li class="menu-item-has-children dropdown">
                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Autores</a>
                        <ul class="sub-menu children dropdown-menu">
-                           <li><i class="fa fa-pencil"></i><a href="{% url 'libro:crear_autor' %}">Registro de Autores</a></li>
-                           <li><i class="fa fa-table"></i><a href="{% url 'libro:listar_autor' %}">Listado de Autores</a></li>
+                           <li><i class="fa fa-pencil"></i><a href="{% url 'autor:crear' %}">Registro de Autores</a></li>
+                           <li><i class="fa fa-table"></i><a href="{% url 'autor:listar' %}">Listado de Autores</a></li>
                        </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Libros</a>
                        <ul class="sub-menu children dropdown-menu">
-                           <li><i class="fa fa-pencil"></i><a href="tables-basic.html">Registro de Libros</a></li>
-                           <li><i class="fa fa-table"></i><a href="tables-data.html">Listado de Libros</a></li>
+                           <li><i class="fa fa-pencil"></i><a href="{% url 'libro:crear' %}">Registro de Libros</a></li>
+                           <li><i class="fa fa-table"></i><a href="{% url 'libro:listar' %}">Listado de Libros</a></li>
                        </ul>
                     </li>
                 </ul>
@@ -67,7 +67,7 @@
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa- user"></i>Perfil</a>
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Administración</a>
-                            <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="{% url 'usuario:logout' %}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -84,8 +84,7 @@
                             <div class="card bg-primary">
                                 <div class="card-body">
                                     <blockquote class="blockquote mb-0 text-light text-center">
-                                        <h1 class="text-light">BIENVENIDOS A BIBLIOTECA</h1>
-                                        <footer class="blockquote-footer text-light">"Google puede darte 100.00 respuestas, el Bibliotecario puede darte la correcta." -<cite title="Neil Gaiman">Neil Gaiman</cite></footer>
+                                        <h1 class="text-light">BIENVENIDO {{user.username | upper}}</h1>
                                     </blockquote>
                                 </div>
                             </div>
@@ -101,7 +100,7 @@
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                        Copyright &copy; 2018 Ela Admin
+                        Copyright &copy; FGMO
                     </div>
                     <div class="col-sm-6 text-right">
                         Designed by <a href="https://colorlib.com">Colorlib</a>

@@ -4,12 +4,17 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic.edit import FormView
+from django.views.generic import TemplateView
 from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
 
 from .forms import LoginForm
 
 # Create your views here.
+
+
+class Inicio(TemplateView):
+    template_name = 'index.html'
 
 
 class Login(FormView):
@@ -32,4 +37,4 @@ class Login(FormView):
 
 def logoutUsuario(request):
     logout(request)
-    return HttpResponseRedirect('/accounts/login/')
+    return HttpResponseRedirect('/usuario/login')
