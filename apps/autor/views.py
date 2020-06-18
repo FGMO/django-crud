@@ -20,7 +20,7 @@ class ListarAutor(ListView):
 
 class ActualizarAutor(UpdateView):
     model = Autor
-    template_name = 'autor/crear.html'
+    template_name = 'autor/editar.html'
     form_class = AutorForm
     success_url = reverse_lazy('autor:listar')
 

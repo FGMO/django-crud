@@ -18,7 +18,7 @@ class ListarLibro(ListView):
 
 class ActualizarLibro(UpdateView):
     model = Libro
-    template_name = 'libro/crear.html'
+    template_name = 'libro/editar.html'
     form_class = LibroForm
     success_url = reverse_lazy('libro:listar')
 
