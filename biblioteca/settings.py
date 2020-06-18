@@ -123,6 +123,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Usuario por defecto
+AUTH_USER_MODEL = 'usuario.Usuario'
+
 # Url para iniciar sesion
 LOGIN_URL = '/usuario/login'
 
