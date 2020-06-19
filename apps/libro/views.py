@@ -7,14 +7,15 @@ from .models import Libro
 # Create your views here.
 class CrearLibro(CreateView):
     model = Libro
-    template_name = 'libro/crear.html'
     form_class = LibroForm
+    template_name = 'libro/crear.html'
     success_url = reverse_lazy('libro:listar')
 
 class ListarLibro(ListView):
+    model = Libro
     template_name = 'libro/listar.html'
     context_object_name = 'libros'
-    queryset = Libro.objects.filter(eliminado=False)
+    queryset = model.objects.filter(eliminado=False)
 
 class ActualizarLibro(UpdateView):
     model = Libro
@@ -28,7 +29,7 @@ class EliminarLibro(DeleteView):
     template_name = 'libro/eliminar.html'
 
     def post(self, request, pk, *args, **kwargs):
-        object = Libro.objects.get(id=pk)
+        object = self.model.objects.get(id=pk)
         object.eliminado = True
         object.save()
         return redirect('libro:listar')

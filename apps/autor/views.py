@@ -13,9 +13,10 @@ class CrearAutor(CreateView):
 
 
 class ListarAutor(ListView):
+    model = Autor
     template_name = 'autor/listar.html'
     context_object_name = 'autores'
-    queryset = Autor.objects.filter(eliminado=False)
+    queryset = model.objects.filter(eliminado=False)
 
 
 class ActualizarAutor(UpdateView):
@@ -30,7 +31,7 @@ class EliminarAutor(DeleteView):
     template_name = 'autor/eliminar.html'
 
     def post(self, request, pk, *args, **kwargs):
-        object = Autor.objects.get(id=pk)
+        object = self.model.objects.get(id=pk)
         object.eliminado = True
         object.save()
         return redirect('autor:listar')

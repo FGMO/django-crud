@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<button onclick="mostrar_modal('{% url 'libro:crear' %}')" class="btn btn-success">Crear</button>
+<button onclick="mostrar_modal(`{% url 'libro:crear' %}`)" class="btn btn-success">Crear</button>
 
 {% if libros %}
 <div class="card">
@@ -34,8 +34,8 @@
             {% endfor %}
           </td>
           <td>
-            <button onclick="mostrar_modal('{% url 'libro:editar' libro.id %}')" class="btn btn-primary">Editar</button>
-            <button onclick="mostrar_modal('{% url 'libro:eliminar' libro.id %}')" class="btn btn-danger">Eliminar</button>
+            <button onclick="mostrar_modal(`{% url 'libro:editar' libro.id %}`)" class="btn btn-primary">Editar</button>
+            <button onclick="mostrar_modal(`{% url 'libro:eliminar' libro.id %}`)" class="btn btn-danger">Eliminar</button>
           </td>
         </tr>
         {% endfor %}

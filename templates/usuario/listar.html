@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+
+{% block title %}Listar Usuarios{% endblock title %}
+
+{% block body %}
+
+<button onclick="mostrar_modal(`{% url 'usuario:crear' %}`)" class="btn btn-success">Crear</button>
+
+{% if usuarios %}
+<div class="card">
+    <div class="card-header">
+        <strong class="card-title">Listado de Usuarios</strong>
+    </div>
+    <div class="table-stats order-table ov-h">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Activo</th>
+                    <th>Administrador</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.id }}</td>
+                    <td>{{ usuario.nombres }}</td>
+                    <td>{{ usuario.apellidos }}</td>
+                    <td>
+                        {% if usuario.activo %}
+                        Si
+                        {% else %}
+                        No
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if usuario.administrador %}
+                        Si
+                        {% else %}
+                        No
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button onclick="mostrar_modal(`{% url 'usuario:editar' usuario.id %}`)"
+                            class="btn btn-primary">Editar</button>
+                        <button onclick="mostrar_modal(`{% url 'usuario:eliminar' usuario.id %}`)"
+                            class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<h1>No existen usuarios registrados</h1>
+{% endif %}
+
+<div id="modal" class="modal fade" role="dialog">
+
+</div>
+
+{% endblock body %}
+
+{% block script %}
+<script type="text/javascript">
+    function mostrar_modal(url) {
+        $('#modal').load(url, function () {
+            $(this).modal('show');
+        });
+    }
+</script>
+{% endblock script %}
